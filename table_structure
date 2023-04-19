@@ -1,0 +1,227 @@
+TABLE STRUCTURE : 9-25-22-13=69(1-69) // (1-68)
+1.a00005E5B0AFf - NAME PLATE PROFILE (NP) #9
+
+2.b01005E5B00Ff - INSTANTANEOUS PROFILE(IP) #25
+
+3.c0100630100Ff - BLOCK LOAD PROFILE(BLP) - #22
+
+4.d0100630200Ff - DAILY LOAD PROFILE(DLP) #13
+ #######################
+ Table with hex-Description
+1.a00005E5B0AFf - NAME PLATE PROFILE (NP)
+
+2.b01005E5B00Ff - INSTANTANEOUS PROFILE(IP)
+3.c0100630100Ff - BLOCK LOAD PROFILE(BLP) - "meter_id": "MTRID0000",... 001....
+4.d0100630200Ff - DAILY LOAD PROFILE(DLP)
+
+5.DataNamePlateDetails - NO DATA FOUND
+
+6.DataScadaMeterDailyLoadProfile - NO DATA FOUND 4.
+7.DataScadaMeterInstant
+8.DataScadaMeterLoadProfile
+9.DataScadaMeterNameplateProfile
+
+10.RsmColumnObisCode - hex_oc,dec_oc,des,short_name(DESCRIPTION ABOUT HEX COL)
+11.RsmDataFormat
+12.RsmMeterMaster
+13.RsmMeterProfileMaster
+14.RsmOcTableCoulumns - col code,tab code (TABLE & COL CODE)
+15.RsmRoleMaster - role_des, role_type, permission(ROLE BASED PERMISSIONS)
+16.RsmTableObisCode - hex_oc,dec_oc,des,short_name(DESCRIPTION ABOUT HEX TABLE)
+17.RsmUserMaster - user manual
+
+2)4 tables -Nested
+    1.DataScadaMeterDailyLoadProfile
+        meter-RsmMeterMaster
+        data_format-RsmDataFormat
+    2.DataScadaMeterInstant
+        meter-RsmMeterMaster
+        data_format-RsmDataFormat
+    3.DataScadaMeterLoadProfile
+        meter-RsmMeterMaster
+        data_format-RsmDataFormat
+    4.DataScadaMeterNameplateProfile
+        meter-RsmMeterMaster
+        data_format-RsmDataFormat
+3.foreignkey relationship
+    1.one-to-one
+    2.one-to-many
+    3.many-to-many
+
+1.RsmDataFormat
+    format_id ,type,function_name
+2 RsmMeterMaster
+    meter_id ,meter_serial_number,manufacturer_name,firmware_version,meter_type,ct_ratio
+    pt_ratio,year_of_manufacture,meter_category,current_rating
+
+1.DataScadaMeterDailyLoadProfile
+    auto_index,meter,time_stamp,data,data_format
+2. DataScadaMeterInstant
+    auto_index,meter,time_stamp,data,data_format
+3.DataScadaMeterLoadProfile
+    auto_index,meter,time_stamp,data,data_format
+4. DataScadaMeterNameplateProfile
+    auto_index,meter,time_stamp,data,data_format
+to do..
+ 1.nested serializer
+ 2.max data
+
+with meter - get max(NAME PLATE PROFILE (NP))
+    get max(INSTANTANEOUS PROFILE(IP))
+    get max(BLOCK LOAD PROFILE(BLP))
+    get max(DAILY LOAD PROFILE(DLP))
+
+Columns Hex-Description
+00_00_01_00_00_FF
+        "hex_oc": "00_00_60_01_00_FF"-"description": "METER SERIAL NUMBER"
+        "hex_oc": "00_00_60_01_01_FF"-"description": "MANUFACTURER NAME"
+        "hex_oc": "01_00_00_02_00_FF-"description": "FIRMWARE VERSION FOR METER"
+        "hex_oc": "00_00_5E_5B_09_FF"-"description": "METER TYPE"
+        "hex_oc": "01_00_00_04_02_FF"-"description": "CTR"
+        "hex_oc": "01_00_00_04_03_FF"- "description": "PTR"
+        "hex_oc": "00_00_60_01_04_FF"-"description": "YEAR OF MANUFACTURE"
+        "hex_oc": "00_00_5E_5B_0B_FF"-"description": "METER CATEGORY"
+        "hex_oc": "00_00_5E_5B_0C_FF"-"description": "CURRENT RATING"
+        "hex_oc": "00_00_01_00_00_FF"-"description": "CLOCK"
+        "hex_oc": "01_00_1F_07_00_FF"-"description": "L1 CURRENT"
+        "hex_oc": "01_00_33_07_00_FF"-"description": "L2 CURRENT"
+        "hex_oc": "01_00_47_07_00_FF"-"description": "L3 CURRENT"
+        "hex_oc": "01_00_21_07_00_FF"-"description": "L1 POWERFACTOR"
+        "hex_oc": "01_00_35_07_00_FF",-"description": "L2 POWERFACTOR"
+        "hex_oc": "01_00_49_07_00_FF"-"description": "L3 POWERFACTOR"
+        "hex_oc": "01_00_0D_07_00_FF"-"description": "SIGNED POWER FACTOR"
+        "hex_oc": "01_00_0E_07_00_FF"-"description": "FREQUENCY-HZ"
+        "hex_oc": "01_00_09_07_00_FF"-"description": "APPARENT POWER-VA"
+        "hex_oc": "01_00_01_07_00_FF"-"description": "ACTIVEPOWER-W"
+        "hex_oc": "01_00_03_07_00_FF"-"description": "SIGNED REACTIVE POWER-VAR"
+        "hex_oc": "01_00_01_08_00_FF"- "description": "CUM.ENERGY-WH(IMP)"
+        "hex_oc": "01_00_02_08_00_FF"-"description": "CUM.ENERGY-WH(EXP)"
+        "hex_oc": "01_00_09_08_00_FF"-"description": "CUM.ENERGY-VAH(IMP)"
+        "hex_oc": "01_00_0A_08_00_FF"- "description": "CUM.ENERGY-VAH(EXP)"
+        "hex_oc": "00_00_60_07_00_FF"-"description": "NO OF POWER FAILURES"
+        "hex_oc": "00_00_5E_5B_08_FF",-"description": "CUM.POWER FAILURE DURATION"
+        "hex_oc": "00_00_5E_5B_00_FF"-"description": "CUMULATIVE TAMPER COUNT"
+        "hex_oc": "00_00_00_01_00_FF"-"description": "CUM.BILLING COUNT"
+        "hex_oc": "00_00_60_02_00_FF"-"description": "CUM. PROGRAMMING COUNT"
+        "hex_oc": "00_00_00_01_02_FF"-"description": "BILLING DATE"
+        "hex_oc": "01_00_20_07_00_FF"-"description": "L1 VOLTAGE"
+        "hex_oc": "01_00_34_07_00_FF"-"description": "L2 VOLTAGE"
+        "hex_oc": "01_00_48_07_00_FF"-"description": "L3 VOLTAGE"
+        "hex_oc": "00_00_01_00_00_FF"-"description": "CLOCK"
+        "hex_oc": "01_00_01_1D_00_FF"-"description": "CH.0 SUM LI ACTIVE POWER+(QI+QIV)TIME INTEGRAL 5"
+        "hex_oc": "01_00_02_1D_00_FF"-"description": "CH.0 SUM LI ACTIVE POWER+(QII+QIII)TIME INTEGRAL 5"
+        "hex_oc": "01_00_81_1D_00_FF"-"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_82_1D_00_FF"-"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_05_1D_00_FF"-"description": "BLOCK ENERGY-VARHQ1"
+        "hex_oc": "01_00_08_1D_00_FF"-"description": "BLOCK ENERGY-VARHQ4"
+        "hex_oc": "01_00_06_1D_00_FF"-"description": "BLOCK ENERGY-VARHQ2"
+        "hex_oc": "01_00_07_1D_00_FF"-"description": "BLOCK ENERGY-VARHQ3"
+        "hex_oc": "01_00_09_1D_00_FF"-"description": "CH.0 SUM LI APPARENT POWER+(QI+QIV)TIME INTEGRAL 5"
+        "hex_oc": "01_00_0A_1D_00_FF"-"description": "CH.0 SUM LI APPARENT POWER+(QII+QIII)TIME INTEGRAL 5"
+        "hex_oc": "01_00_10_1D_00_FF"-"description": "CH.0 SUM LI ACTIVE POWER(ABS(QI+QIV)-ABS(QII+QIII))TIME INTEGRAL 5"
+        "hex_oc": "01_00_97_1D_00_FF"-"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_98_1D_00_FF"--"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_60_05_04_FF"-"description": "CH. 0 INTERNAL OPERATION STATUS (STATUS WORD#4)"
+        "hex_oc": "01_00_20_1B_00_FF"-"description": "CH. 0 L1 VOLTAGE CURRENT AVG. 5"
+        "hex_oc": "01_00_34_1B_00_FF"-"description": "CH. 0 L2 VOLTAGE CURRENT AVG. 5"
+        "hex_oc": "01_00_48_1B_00_FF"-"description": "CH. 0 L3 VOLTAGE CURRENT AVG. 5"
+        "hex_oc": "01_00_1F_1B_00_FF"-"description": "CH. 0 L1 CURRENT CURRENT AVG. 5"  --
+        "hex_oc": "01_00_33_1B_00_FF"-"description": "CH. 0 L2 CURRENT CURRENT AVG. 5"
+        "hex_oc": "01_00_47_1B_00_FF"-"description": "CH. 0 L3 CURRENT CURRENT AVG. 5"
+        "hex_oc": "01_00_0E_1B_00_FF"-"description": "CH.0 SUPPLY FREQUENCY CURRENT AVG.5"
+        "hex_oc": "00_00_01_00_00_FF"-"description": "CLOCK"
+        "hex_oc": "01_00_01_08_00_FF"- "description": "CUM.ENERGY-WH(IMP)"
+        "hex_oc": "01_00_02_08_00_FF"-"description": "CUM.ENERGY-WH(EXP)"
+        "hex_oc": "01_00_81_08_00_FF"-"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_82_08_00_FF"-"description": "MAN.SPECIFIC"
+        "hex_oc": "01_00_05_08_00_FF"-"description": "CUM.ENERGY-VARHQ1"
+        "hex_oc": "01_00_08_08_00_FF"-"description": "CUM.ENERGY-VARHQ4"
+        "hex_oc": "01_00_06_08_00_FF"-"description": "CUM.ENERGY-VARHQ2"
+        "hex_oc": "01_00_07_08_00_FF"-"description": "CUM.ENERGY-VARHQ3"
+        "hex_oc": "01_00_09_08_00_FF"-"description": "CUM.ENERGY-VAH(IMP)"
+        "hex_oc": "01_00_0A_08_00_FF"-"description": "CUM.ENERGY-VAH(EXP)"
+        "hex_oc": "01_00_5E_5B_01_FF"-"description": "CH. 0 IDENTIFIERS FOR INDIA"
+        "hex_oc": "01_00_5E_5B_02_FF"-"description": "CH. 0 IDENTIFIERS FOR INDIA"
+
+
+class DataProfile(views.APIView):
+
+    def get(self, request, format=None):
+        try:
+            meter = a00005E5B0AFf.objects.all()
+            serializer = a00005E5B0AFfSeri(meter, many=True)
+            for i in serializer.data:
+                queryset = b01005E5B00Ff.objects.filter(meter_id=i).latest('number_00_00_01_00_00_ff')
+                serializer1 = b01005E5B00FfSeri(queryset, many=False)
+                queryset = c0100630100Ff.objects.filter(meter_id=i).latest('number_00_00_01_00_00_ff')
+                serializer2 = c0100630100FfSeri(queryset, many=False)
+                queryset = d0100630200Ff.objects.filter(meter_id=serializer.data).latest('number_00_00_01_00_00_ff')
+                serializer3 = d0100630200FfSeri(queryset, many=False)
+                if serializer is not None:
+                    return Response({'status': 'success', 'status_code': status.HTTP_302_FOUND,'meter_id':serializer.data,
+                                 'InstantProfile': serializer1.data,'MeterloadProfile': serializer2.data,'DailyloadProfile': serializer3.data})
+        except ObjectDoesNotExist:
+            return Response({'status': 'Failure', 'status_code': status.HTTP_400_BAD_REQUEST,
+                             'Message': 'Data Not Found'})
+
+queryset = b01005E5B00Ff.objects.filter(meter_id=value).latest('number_00_00_01_00_00_ff')
+                    serializer1 = b01005E5B00FfSeri(queryset, many=False)
+                    queryset = c0100630100Ff.objects.filter(meter_id=value).latest('number_00_00_01_00_00_ff')
+                    serializer2 = c0100630100FfSeri(queryset, many=False)
+                    queryset = d0100630200Ff.objects.filter(meter_id=value).latest('number_00_00_01_00_00_ff')
+                    serializer3 = d0100630200FfSeri(queryset, many=False)
+                    return Response({'status': 'success', 'status_code': status.HTTP_302_FOUND, 'meter_id': only_values,
+                                 'InstantProfile': serializer1.data, 'MeterloadProfile': serializer2.data,
+                                 'DailyloadProfile': serializer3.data})
+
+
+    def get(self, request,format=None):
+        try:
+            meter = a00005E5B0AFf.objects.all()
+            only_values = a00005E5B0AFf.objects.all().values_list('meter_id')
+            serializer = a00005E5B0AFfSeri(meter, many=True)
+            if serializer is not None:
+                for meter_values in only_values:
+                    values = {}
+                    queryset = b01005E5B00Ff.objects.filter(meter_id=meter_values).latest('number_00_00_01_00_00_ff')
+                    serializer1 = b01005E5B00FfSeri(queryset, many=False)
+                    meter_values.append(values)
+                return Response({'status': 'success'})
+
+
+SELECT a.METER_ID, max(b.00_00_01_00_00_FF),max(c.00_00_01_00_00_FF),max(d.00_00_01_00_00_FF)
+FROM RSM_METER_MASTER a left join 01_00_5E_5B_00_FF b on a.METER_ID = b.METER_ID
+left join 01_00_63_01_00_FF c on c.METER_ID = a.METER_ID left join 01_00_63_02_00_FF d
+on d.METER_ID = a.METER_ID
+group by a.METER_ID
+
+
+SELECT ins.METER_ID, max(ins.00_00_01_00_00_FF),max(bl.00_00_01_00_00_FF),max(dl.00_00_01_00_00_FF)
+FROM 01_00_5E_5B_00_FF ins
+left join 01_00_63_01_00_FF bl on bl.METER_ID = ins.METER_ID
+left join 01_00_63_02_00_FF dl on dl.METER_ID = ins.METER_ID
+group by ins.METER_ID
+
+SELECT a.METER_ID, b.00_00_01_00_00_FF,c.00_00_01_00_00_FF,d.00_00_01_00_00_FF
+FROM RSM_METER_MASTER a
+left join 01_00_5E_5B_00_FF b on b.METER_ID = a.METER_ID
+left join 01_00_63_01_00_FF c on c.METER_ID = a.METER_ID
+left join 01_00_63_02_00_FF d on d.METER_ID = a.METER_ID
+group by a.METER_ID
+
+
+
+RSM_METER_MASTER
+00_00_5E_5B_0A_FF
+01_00_5E_5B_00_FF
+01_00_63_01_00_FF
+01_00_63_02_00_FF
+
+
+
+
+
+
+
+
+
